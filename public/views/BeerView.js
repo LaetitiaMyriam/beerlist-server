@@ -18,10 +18,12 @@ var BeerView = Backbone.View.extend({
 
   toggleEditMode: function () {
     this.model.set('edit_mode', !this.model.get('edit_mode'));
+
+    this.$nameInput.focus();
   },
 
   removeBeer: function () {
-    this.model.destroy({success: function(model, response) {
+    this.model.destroy({ success: function(model, response) {
       console.log(model);
       console.log(response);
     }});
@@ -48,7 +50,7 @@ var BeerView = Backbone.View.extend({
 
     this.model.set('name', value);
     this.model.set('edit_mode', false);
-    this.save();
+    this.model.save();
   },
 
   render: function () {
